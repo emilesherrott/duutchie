@@ -1,0 +1,5 @@
+#sign-in-submit:hover {
+    cursor:pointer;
+    background-color: #C50;
+    transition: 1s;
+}

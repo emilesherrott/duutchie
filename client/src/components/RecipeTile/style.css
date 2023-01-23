@@ -1,0 +1,47 @@
+@import url('https://fonts.googleapis.com/css2?family=Abril+Fatface&family=Barlow:wght@200&display=swap');
+
+
+article {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    max-width: 20%;
+}
+
+h3 {
+    font-size: large;
+    font-family: 'Abril Fatface', cursive;
+    margin: 5px 0px 5px 0px;    
+}
+
+img {
+    max-width: -webkit-fill-available;
+}
+
+.rating, .time {
+    font-family: 'Barlow', sans-serif;
+}
+
+.general-info {
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    justify-content: space-between;
+}
+
+.recipe-info {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    width: 50%;
+}
+
+.recipe-nationality {
+    display: flex;
+    justify-content: flex-end;
+    width: 50%;
+}
+
+.recipe-nationality > img {
+    width: 50%;
+}

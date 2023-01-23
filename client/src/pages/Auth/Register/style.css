@@ -1,0 +1,37 @@
+form {
+    margin: 20px 0px 0px 0px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+#register-form {
+    display: flex;
+    flex-direction: column;
+    width: 30%;
+}
+
+.label-form {
+    display: flex;
+    justify-content: flex-start;
+    width: 100%;
+    margin: 0px 0px 10px 0px;
+}
+
+.label-form > label {
+    margin: 0px 10px 0px 0px;
+    white-space: nowrap;
+}
+
+.label-form > input {
+    margin: 0px 0px 10px 0px;
+    padding: 4px 0px 4px 0px;
+    border: none;
+    outline: none;
+    background: #EEE;
+    width: inherit;
+}
+
+.label-form > input:focus {
+    border: none;
+}

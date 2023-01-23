@@ -1,0 +1,28 @@
+@import url('https://fonts.googleapis.com/css2?family=Abril+Fatface&display=swap');
+
+h1 {
+    font-size: xx-large;
+    font-family: 'Abril Fatface', cursive;
+}
+
+h2 {
+    font-size: larger;
+    font-family: 'Abril Fatface', cursive;    
+}
+
+#search {
+    width: 40vw;
+    padding: 10px;
+}
+
+#top-recipe-title {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    margin: 40px;
+}
+
+#top-recipes {
+    display: flex;
+    flex-wrap: wrap;
+}
