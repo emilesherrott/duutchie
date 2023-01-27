@@ -13,7 +13,7 @@ const App = () => {
       <NavBar username={username}/>
       <Routes>
         <Route path="/" element={<Welcome />}/>
-        <Route path="/register" element={<Register />}/>
+        <Route path="/register" element={<Register setUsername={setUsername}/>}/>
         <Route path="/sign-in" element={<SignIn setUsername={setUsername}/>}/>
       </Routes>
       <Footer />

@@ -17,6 +17,8 @@ const NavBar = ({ username }) => {
     window.localStorage.removeItem('token')
   }
 
+  const id = 1
+
 
 
   return (
@@ -42,6 +44,7 @@ const NavBar = ({ username }) => {
         </div>
         :
         <div className="auth-links">
+          <Link to={`/profile/${id}`} className="auth-link">Profile</Link>
           <button onClick={handleClick}>Sign Out</button>
       </div>
         }

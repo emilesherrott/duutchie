@@ -1,14 +1,24 @@
 import React, { useState } from "react"
-import axios from 'axios'
+import { useNavigate } from "react-router-dom"
+import axios from "axios"
+import { setTokenToLocalStorage } from "../../../helpers/auth"
 import "./style.css"
 
-const Register = () => {
+const Register = ({ setUsername }) => {
   const [userData, setUserData] = useState({
     username: "",
     email: "",
     password: "",
     passwordConfirmation: "",
   })
+
+  const [error, setError] = useState("")
+
+  const signInUnsuccessful = () => {
+    return error
+  }
+
+  const navigate = useNavigate()
 
   const handleChange = (e) => {
     const newUserData = { ...userData, [e.target.name]: e.target.value }
@@ -18,11 +28,20 @@ const Register = () => {
   const handleSubmit = async (e) => {
     e.preventDefault()
     try {
-      await axios.post('http://localhost:3000/register', userData)
+      const { data } = await axios.post("http://localhost:3000/register", userData)
+      setTokenToLocalStorage(data.token)
+      setUsername(data.user)
+      setTimeout(() => {
+        navigate("/")
+      }, 400)
     } catch (err) {
       console.log(err)
+      setError(err["response"]["data"]["message"])
+      signInUnsuccessful()
     }
   }
+
+
 
   return (
     <>
@@ -35,7 +54,7 @@ const Register = () => {
           </div>
           <div className="label-form">
             <label htmlFor="email">Email:</label>
-            <input type="text" id="email" name="email" onChange={handleChange} required />
+            <input type="email" id="email" name="email" onChange={handleChange} required />
           </div>
           <div className="label-form">
             <label htmlFor="password">Password:</label>
@@ -50,6 +69,7 @@ const Register = () => {
           </div>
         </div>
       </form>
+      {signInUnsuccessful() ? <span id="sign-in-error">{error}</span> : <></>}
     </>
   )
 }

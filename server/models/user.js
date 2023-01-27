@@ -22,10 +22,16 @@ userSchema.virtual("passwordConfirmation").set(function (passwordConfirmation) {
 
 userSchema.pre("validate", function (next) {
   if (this.isModified("password") && this.password !== this._passwordConfirmation) {
-    this.invalidate("passwordConfirmation", "Passwords do not match")
-  }
-  next()
+    this.invalidate("Invalid", "Passwords do not match")
+    next({
+      code: 401,
+      message: "Passwords do not match"
+  })
+} else {
+  next();
+}
 })
+
 
 userSchema.pre("save", function (next) {
   if (this.isModified("password")) {

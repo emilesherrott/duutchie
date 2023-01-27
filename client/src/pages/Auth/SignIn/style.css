@@ -3,3 +3,7 @@
     background-color: #C50;
     transition: 1s;
 }
+
+#sign-in-error {
+    color: red;
+}

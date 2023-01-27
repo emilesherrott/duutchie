@@ -4,11 +4,17 @@ import axios from "axios"
 import { setTokenToLocalStorage } from "../../../helpers/auth"
 import "./style.css"
 
-const SignIn = ({ setUsername }) => { 
+const SignIn = ({ setUsername }) => {
   const [userData, setUserData] = useState({
     username: "",
     password: "",
   })
+
+  const [error, setError] = useState("")
+
+  const signInUnsuccessful = () => {
+    return error
+  }
 
   const navigate = useNavigate()
 
@@ -20,16 +26,16 @@ const SignIn = ({ setUsername }) => {
   const handleSubmit = async (e) => {
     e.preventDefault()
     try {
-      const { data } = await axios.post('http://localhost:3000/sign-in', userData)
+      const { data } = await axios.post("http://localhost:3000/sign-in", userData)
       console.log(data)
       setTokenToLocalStorage(data.token)
       setUsername(data.user)
       setTimeout(() => {
-          navigate('/')
+        navigate("/")
       }, 400)
-
     } catch (err) {
-      console.log(err)
+      setError(err["response"]["data"]["message"])
+      signInUnsuccessful()
     }
   }
 
@@ -51,6 +57,7 @@ const SignIn = ({ setUsername }) => {
           </div>
         </div>
       </form>
+      {signInUnsuccessful() ? <span id="sign-in-error">{error}</span> : <></>}
     </>
   )
 }
