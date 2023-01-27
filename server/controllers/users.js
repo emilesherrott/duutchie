@@ -18,8 +18,13 @@ export const getUserProfile = async (req, res) => {
 export const changePassword = async (req, res) => {
   try {
     const userId = req.currentUser._id
-    // const salt = await bcrypt.genSaltSync()
-    const password = await bcrypt.hashSync(req.body.password, bcrypt.genSaltSync())
+
+    const userToUpdate = await User.findOne({ _id: userId })
+    if (!userToUpdate || !userToUpdate.validatePassword(req.body.password)) {
+        throw new Error()
+    }
+
+    const password = await bcrypt.hashSync(req.body.new_password, bcrypt.genSaltSync())
     const userPassword = await User.findByIdAndUpdate({ _id: userId }, { password: password }, { new: true })
     return res.status(200).json({ message: "Password updated"})
   } catch (err) {
