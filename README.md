@@ -6,3 +6,6 @@
 
 ## User ideas
 Update user info page
+
+
+## Keep connection closed after making request

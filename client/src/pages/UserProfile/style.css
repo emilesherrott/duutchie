@@ -1,0 +1,23 @@
+#update-password {
+    margin: 60px 0px 0px 0px;
+}
+
+.update-submit-div {
+    display: flex;
+    flex-direction: column;
+}
+
+.update-submit-input {
+    margin: 0px;
+    padding: 0px;
+}
+
+.label-form > .update-successful {
+    background: #0F0;
+    height: 10px;
+}
+
+.label-form > .update-unsuccessful {
+    background: #F00;
+    height: 10px;
+}

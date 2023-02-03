@@ -7,6 +7,7 @@ import User from '../models/user.js'
 export const getUserProfile = async (req, res) => {
   try {
     const user = await User.findOne({ username: req.currentUser.username })
+    console.log(user)
     if (!user) throw new Error("User not found")
     return res.status(200).json(user)
   } catch (err) {
@@ -26,9 +27,9 @@ export const changePassword = async (req, res) => {
 
     const password = await bcrypt.hashSync(req.body.new_password, bcrypt.genSaltSync())
     const userPassword = await User.findByIdAndUpdate({ _id: userId }, { password: password }, { new: true })
-    return res.status(200).json({ message: "Password updated"})
+    return res.status(202).json({ "message": "Password updated" })
   } catch (err) {
-    return res.status(404).json({ message: "Unable to update password" })
+    return res.status(422).json({ "message": "Unable to update password" })
   }
 
 }

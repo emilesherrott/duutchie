@@ -1,22 +1,23 @@
-// import { MongoClient, ServerApiVersion } from 'mongodb'
 import mongoose from 'mongoose'
 import app from "./app.js"
-import { port, dbURI } from './config/environment.js'
-
+// import { port, dbURI } from './config/environment.js'
+import dotenv from 'dotenv'
+dotenv.config()
 
 
 
 const connectDB = async () => {
-    // const client = new MongoClient(dbURI, { useNewUrlParser: true, useUnifiedTopology: true, serverApi: ServerApiVersion.v1 })
+    console.log(process.env.DB_URI)
     try {
-    mongoose.connect(dbURI, { useNewUrlParser: true, useUnifiedTopology: true })
-    console.log("Mongo db is connected")
+    mongoose.connect(process.env.DB_URI, { useNewUrlParser: true, useUnifiedTopology: true })
+    mongoose.set('strictQuery', false) 
+    console.log("MongoDB is connected")
     } catch (err) {
-        console.log("fail")
+        console.log("MongoDB failed to connect")
     }
 }
 
 connectDB()
 
 
-app.listen(port, () => console.log(`App up and running on port ${port}`))
+app.listen(process.env.PORT, () => console.log(`App up and running on port ${process.env.PORT}`))
