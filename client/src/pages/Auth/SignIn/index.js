@@ -26,6 +26,7 @@ const SignIn = ({ setUsername }) => {
   const handleSubmit = async (e) => {
     e.preventDefault()
     try {
+      console.log(userData)
       const { data } = await axios.post("http://localhost:3000/sign-in", userData)
       console.log(data)
       setTokenToLocalStorage(data.token)

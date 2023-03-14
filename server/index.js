@@ -1,6 +1,5 @@
 import mongoose from 'mongoose'
 import app from "./app.js"
-// import { port, dbURI } from './config/environment.js'
 import dotenv from 'dotenv'
 dotenv.config()
 

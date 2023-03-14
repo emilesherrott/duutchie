@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react"
+import { useNavigate } from "react-router-dom"
 import axios from "axios"
 import { getTokenFromLocalStorage } from "../../helpers/auth"
 import "./style.css"
@@ -11,7 +12,14 @@ const UserProfile = () => {
     new_password: "",
   })
 
+  const navigate = useNavigate()
+  const homePage = () => {
+    setTimeout(() => {
+      navigate("/")
+    }, 1000)
+  }
   let result = undefined
+  
 
 
   useEffect(() => {
@@ -38,6 +46,7 @@ const UserProfile = () => {
         headers: { Authorization: `Bearer ${getTokenFromLocalStorage()}` },
       })
       result = result.request.status
+      homePage()
     } catch (err) {
       result = err.response.request.status
     }

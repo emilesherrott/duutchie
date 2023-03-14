@@ -1,6 +1,5 @@
 import jwt from 'jsonwebtoken'
 import bcrypt from 'bcrypt'
-import { secret } from '../config/environment.js'
 import User from '../models/user.js'
 
 // ! Whilst on front end, only place username parameter through the token
